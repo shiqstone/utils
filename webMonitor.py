@@ -9,7 +9,7 @@ import time
 import sys
 import pycurl
  
-URL="http://cp.360.cn"
+URL="http://www.github.com"
 c = pycurl.Curl()
 c.setopt(pycurl.URL, URL)
                  
