@@ -42,9 +42,10 @@ INSTALL_DIR=`adirname "$0"`
         yum -y install freetype freetype-devel
         yum -y install libpng libpng-devel
         yum -y install libjpeg libjpeg-devel libtool-ltdl-devel 
-        yum -y install openssl openssl-devel 
         ##############install php##############
         cd ${INSTALL_DIR} 
+        cp /usr/lib64/libpng* /usr/lib/
+        cp /usr/lib64/libjpeg* /usr/lib/
         tar zxvf php-5.2.17.tar.gz
         cd php-5.2.17
         patch -p1 < php-5.2.17-max-input-vars.patch
@@ -132,7 +133,7 @@ function php_jpeg()
   tar zxvf jpeg-6b.tar.gz 
    cd jpeg-6b
   ./configure --prefix=/usr/local/jpeg --enable-shared
-  make && make install
+  make ; make install
 }
 
 function php_mcrypt()
@@ -150,27 +151,43 @@ function php_memached()
   tar zxvf libmemcached-0.51.tar.gz
   cd libmemcached-0.51
   ./configure  --prefix=/usr/local/libmemcached --with-memcached
-  make && make install
+  make ; make install
   cd ..
   #wget http://pecl.php.net/get/memcached-1.0.2.tgz
   tar zxvf memcached-1.0.2.tgz
   cd memcached-1.0.2
   /usr/local/bin/phpize
-  ./configure  --with-memcached -with-php-config=/usr/local/bin/php-config 
-  make && make install
+  ./configure  --enable-memcached -with-php-config=/usr/local/bin/php-config --with-libmemcached-dir=/usr/local/libmemcached
+  make ; make install
+}
+function php_memache()
+{
+  tar zxvf memcache-3.0.6.tgz
+  cd memcache-3.0.6
+  /usr/local/bin/phpize
+  ./configure
+  make ; make install
+}
+function php_zlib()
+{
+    tar zxvf zlib-1.2.8.tar.gz 
+    cd zlib-1.2.8
+    CFLAGS="-O3 -fPIC" ./configure
+    make ; make install
 }
 
-cp CentOS6-Base-163.repo /etc/yum.repos.d/
-cp epol.repo /etc/yum.repos.d/
+#cp CentOS6-Base-163.repo /etc/yum.repos.d/
+#cp epol.repo /etc/yum.repos.d/
 
 apache_install
 #mysql_install
 php_mcrypt
 php_jpeg
 php_libssh2
-#memcache_install
+memcache_install
 php_redis         
 php_mongo
 php_memached
-#php_openssl
+php_memache
+php_zlib
 php_install
