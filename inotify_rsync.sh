@@ -10,7 +10,7 @@ SERVERS='10.0.0.1 10.0.0.2'
 sync_one()
 {
   echo "Pushing "$1
-  #echo "/usr/bin/rsync -av $opt $src ${user}@$1:$dest"
+  #echo "/usr/bin/rsync -av $opt $src$2 ${user}@$1:$dest$2"
   /usr/bin/rsync -av $opt $src$2 ${user}@$1:$dest$2
 }
 
@@ -30,7 +30,16 @@ inotify_file()
   do
     INO_EVENT=$(echo $file | awk '{print $1}')      
     INO_FILE=$(echo $file | awk '{print $2}')  
-    if [[ $INO_EVENT =~ 'CREATE' ]] || [[ $INO_EVENT =~ 'MODIFY' ]] || [[ $INO_EVENT =~ 'CLOSE_WRITE' ]] || [[ $INO_EVENT =~ 'MOVED_TO' ]]
+    #if [[ $INO_EVENT =~ 'CREATE' ]] || [[ $INO_EVENT =~ 'MODIFY' ]] || [[ $INO_EVENT =~ 'CLOSE_WRITE' ]] || [[ $INO_EVENT =~ 'MOVED_TO' ]]
+    if [[ $INO_EVENT =~ 'CREATE' ]] || [[ $INO_EVENT =~ 'MODIFY' ]]
+    then
+      if [ -d "$INO_FILE"]
+      then  
+        opt=''
+        sync_all $INO_FILE
+      fi
+    fi
+    if [[ $INO_EVENT =~ 'CLOSE_WRITE' ]] || [[ $INO_EVENT =~ 'MOVED_TO' ]]
     then
       opt=''
       sync_all $INO_FILE
