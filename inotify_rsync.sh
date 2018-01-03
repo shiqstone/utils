@@ -11,7 +11,7 @@ sync_one()
 {
   echo "Pushing "$1
   #echo "/usr/bin/rsync -av $opt $src ${user}@$1:$dest"
-  /usr/bin/rsync -av $opt $src ${user}@$1:$dest
+  /usr/bin/rsync -av $opt $src$2 ${user}@$1:$dest$2
 }
 
 sync_all()
@@ -19,7 +19,7 @@ sync_all()
   #. /home/user/servers.sh 
   for S in $SERVERS
   do
-      sync_one $S
+      sync_one $S $1
   done
 }
 
@@ -33,7 +33,7 @@ inotify_file()
     if [[ $INO_EVENT =~ 'CREATE' ]] || [[ $INO_EVENT =~ 'MODIFY' ]] || [[ $INO_EVENT =~ 'CLOSE_WRITE' ]] || [[ $INO_EVENT =~ 'MOVED_TO' ]]
     then
       opt=''
-      sync_all
+      sync_all $INO_FILE
     fi
     if [[ $INO_EVENT =~ 'DELETE' ]] || [[ $INO_EVENT =~ 'MOVED_FROM' ]]
     then
@@ -45,7 +45,7 @@ inotify_file()
       if [ ! -d "$INO_FILE" ]
       then
         opt=''
-        sync_all
+        sync_all $INO_FILE
       fi
     fi
   done
