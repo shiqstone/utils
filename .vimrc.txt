@@ -1,0 +1,42 @@
+syntax on
+set smartindent
+if has("vms")
+    set nobackup
+else
+    set backup
+endif
+
+set tabstop=4
+set expandtab
+set shiftwidth=4
+set nocompatible              " be iMproved, required
+set foldcolumn=2
+set incsearch
+set backupdir=~/backup/vim
+set backupext=.bak
+set showmatch
+
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+Plugin 'fatih/vim-go'
+Bundle 'scrooloose/nerdtree'
+Bundle 'Valloric/YouCompleteMe'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '|'
+
+map <F9> :silent! NERDTreeToggle<CR>
+
+set fileencodings=ucs-bom,utf-8,cp936,chinese,gb2312,gb18030
+set termencoding=utf-8
+set encoding=utf-8
