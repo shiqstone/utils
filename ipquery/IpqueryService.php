@@ -31,7 +31,7 @@ class IpqueryService {
             $middle = ceil(($end - $begin) / 14 /2 ) * 14 + $begin;
             fseek($fp, $middle);
             $middle_ip = sprintf('%u', implode('', unpack('L', fread($fp, 4))));
-            if($iplong > $middle_ip){
+            if($iplong >= $middle_ip){
                 $begin = $middle;
             }else{
                 $end = $middle;
