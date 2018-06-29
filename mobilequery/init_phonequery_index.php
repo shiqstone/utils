@@ -5,12 +5,12 @@
   if(isset($argv[1])){
       $mobilestard_path = $argv[1];
   }else{
-      $mobilestard_path = dirname(__FILE__)."/mobile_demo_short.txt";
+      $mobilestard_path = dirname(__FILE__)."/mobile_demo.txt";
   }
   if(isset($argv[2])){
       $mobileindex_path = $argv[2];
   }else{
-      $mobileindex_path = dirname(__FILE__)."/mobile_demo_s_index.dat";
+      $mobileindex_path = dirname(__FILE__)."/mobile_demo_index.dat";
   }
   $handle = fopen($mobilestard_path, 'r');
   $fp = fopen($mobileindex_path, 'w');
