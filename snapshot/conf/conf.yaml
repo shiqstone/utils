@@ -1,0 +1,15 @@
+db:
+    dialect : mysql
+    user : root
+    password :
+    host : localhost
+    port : 3306
+    database : dsp
+    charset : utf8
+s3:
+    access_key : access_key_str
+    secret_key : secret_key_str
+    end_point : http://test.s3.amazon.cn
+    bucket : bucket_str
+goroutine_pool:
+    max_num : 50
