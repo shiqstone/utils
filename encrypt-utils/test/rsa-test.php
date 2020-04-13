@@ -35,7 +35,7 @@ for($i=0; $i<$lcnt; $i++){
 }
 $end = microtime(true);
 echo $algorithm." pubenc cost:".($end-$start)."\n";
-echo "encrypt: ".base64_encode($crypt)."\n";
+echo "encrypt: ".$crypt."\n";
 
 $rsa = new RsaUtil();
 $rsa->setPriKeyByPath(__DIR__."/../data/rsa_private_key.pem");
@@ -56,7 +56,7 @@ for($i=0; $i<$lcnt; $i++){
 }
 $end = microtime(true);
 echo $algorithm." prienc cost:".($end-$start)."\n";
-echo "encrypt: ".base64_encode($crypt)."\n";
+echo "encrypt: ".$crypt."\n";
 
 $rsa = new RsaUtil();
 $rsa->setPubKeyByPath(__DIR__."/../data/rsa_public_key.pem");

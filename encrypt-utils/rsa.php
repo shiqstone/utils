@@ -59,8 +59,13 @@ class RsaUtil
      */
     public function publicEncrypt($data)
     {
-        $res = openssl_public_encrypt($data, $encrypted, $this->pubKey, $this->padding);
-        return base64_encode($encrypted);
+        $crypt = '';
+        $chunks = str_split($data, 117); // 1024 bit && OPENSSL_PKCS1_PADDING  不大于117即可
+        foreach($chunks as $chunk){
+            openssl_public_encrypt($chunk, $encrypted, $this->pubKey, $this->padding);
+            $crypt .= $encrypted;
+        }
+        return base64_encode($crypt);
     }
 
     /*
@@ -69,9 +74,16 @@ class RsaUtil
      */
     public function privateDecrypt($crypt)
     {
-        $crypt = base64_decode($crypt);
-        $res = openssl_private_decrypt($crypt, $decrypted, $this->priKey, $this->padding);
-        return $decrypted;
+        $chunks = str_split(base64_decode($crypt), 128); // 1024 bit  固定172
+        $decrypt = '';
+        foreach($chunks as $chunk){
+            $res = openssl_private_decrypt($chunk, $decrypted, $this->priKey, $this->padding);
+            if(!$res){
+                return false;
+            }
+            $decrypt .= $decrypted;
+        }
+        return $decrypt;
     }
 
     /*
@@ -80,8 +92,13 @@ class RsaUtil
      */
     public function privateEncrypt($data)
     {
-        $res = openssl_private_encrypt($data, $encrypted, $this->priKey, $this->padding);
-        return base64_encode($encrypted);
+        $crypt = '';
+        $chunks = str_split($data, 117); // 1024 bit && OPENSSL_PKCS1_PADDING  不大于117即可
+        foreach($chunks as $chunk){
+            openssl_private_encrypt($chunk, $encrypted, $this->priKey, $this->padding);
+            $crypt .= $encrypted;
+        }
+        return base64_encode($crypt);
     }
 
     /*
@@ -90,9 +107,16 @@ class RsaUtil
      */
     public function publicDecrypt($crypt)
     {
-        $crypt = base64_decode($crypt);
-        $res = openssl_public_decrypt($crypt, $decrypted, $this->pubKey, $this->padding);
-        return $decrypted;
+        $chunks = str_split(base64_decode($crypt), 128); // 1024 bit  固定172
+        $decrypt = '';
+        foreach($chunks as $chunk){
+            $res = openssl_public_decrypt($chunk, $decrypted, $this->pubKey, $this->padding);
+            if(!$res){
+                return false;
+            }
+            $decrypt .= $decrypted;
+        }
+        return $decrypt;
     }
 
     public function setPubKeyByPath($keyPath)
