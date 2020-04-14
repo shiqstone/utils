@@ -38,7 +38,7 @@ $iv  = 'iv123456iv123456';
 //exit;
 
 
-$src = "cbc-192-encrytp-test";
+$src = "cbc-192-encrypt-test";
 $aes = new AES($key, 'aes-192-cbc', '', $iv);
 $start = microtime(true);
 for($i=0; $i<10000; $i++){
@@ -46,6 +46,7 @@ for($i=0; $i<10000; $i++){
 }
 $end = microtime(true);
 echo $algorithm." cbc-192 encrypt cost:".($end-$start)."\n";
+echo base64_encode($res)."\n";
 
 $ddata = $res;
 $start = microtime(true);
@@ -85,6 +86,7 @@ for($i=0; $i<10000; $i++){
 }
 $end = microtime(true);
 echo $algorithm." cfb-192 encrypt cost:".($end-$start)."\n";
+echo base64_encode($res)."\n";
 
 $ddata = $res;
 $start = microtime(true);
@@ -95,9 +97,11 @@ echo $res."\n";
 $end = microtime(true);
 echo $algorithm." cfb-192 decrypt cost:".($end-$start)."\n\n\n";
 
+$key = 'key12345678901234567890k12345678';
+$iv  = 'iv123456iv123456';
 
-// AES CBC 256 加解密
-$src = "cfb-256-encrytp-test";
+// AES CFB 256 加解密
+$src = "cfb-256-encrypt-test";
 $aes = new AES($key, 'aes-256-cfb', AES::OUTPUT_BASE64, $iv);
 $start = microtime(true);
 for($i=0; $i<10000; $i++){
@@ -105,6 +109,7 @@ for($i=0; $i<10000; $i++){
 }
 $end = microtime(true);
 echo $algorithm." cfb-256-encrypt cost:".($end-$start)."\n";
+echo base64_encode($res)."\n";
 
 $ddata = $res;
 $start = microtime(true);

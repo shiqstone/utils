@@ -4,10 +4,10 @@ require __DIR__ . "/../des.php";
                 
 $algorithm = "des";
 
-$key = 'key123456';
+$key = 'key12345';
 $iv = 'iv123456';
 
-$src = "cbc-encrytp-test";
+$src = "cbc-encrypt-test";
 $des = new DES($key, 'DES-CBC', DES::OUTPUT_BASE64, $iv);
 $start = microtime(true);
 for($i=0; $i<10000; $i++){
@@ -30,7 +30,7 @@ echo $algorithm." cbc-decrypt cost:".($end-$start)."\n";
 
 
 // DES ECB 加解密
-$src = "ecb-encrytp-test";
+$src = "ecb-encrypt-test";
 $des = new DES($key, 'DES-ECB', DES::OUTPUT_HEX);
 $start = microtime(true);
 for($i=0; $i<10000; $i++){
@@ -52,7 +52,7 @@ echo $algorithm." ecb-decrypt cost:".($end-$start)."\n";
 
 
 // DES CFB 加解密
-$src = "cfb-encrytp-test";
+$src = "cfb-encrypt-test";
 $des = new DES($key, 'DES-CFB', DES::OUTPUT_BASE64, $iv);
 $start = microtime(true);
 for($i=0; $i<10000; $i++){

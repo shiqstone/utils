@@ -17,18 +17,19 @@ $algorithm = "blowfish";
  */
  
 
-$key = '2fs5uhnjcnpxcpg9';
+$key = 'key1234567890key';
 $iv  = 'iv123456';
 
 
-$src = "ecb-encrytp-test";
-$blowfish = new Blowfish($key, 'bf-ecb', Blowfish::OUTPUT_HEX, '', OPENSSL_RAW_DATA | OPENSSL_NO_PADDING);
+$src = "ECB-encrypt-test";
+$blowfish = new Blowfish($key, 'bf-ecb', Blowfish::OUTPUT_BASE64, '', OPENSSL_RAW_DATA | OPENSSL_NO_PADDING);
 $start = microtime(true);
 for($i=0; $i<10000; $i++){
     $res = $blowfish->encrypt($src);
 }
 $end = microtime(true);
 echo $algorithm." ecb encrypt cost:".($end-$start)."\n";
+echo $res."\n";
 
 $ddata = $res;
 $start = microtime(true);
@@ -40,14 +41,15 @@ $end = microtime(true);
 echo $algorithm." ecb decrypt cost:".($end-$start)."\n\n\n";
 
 
-$src = "cbc-encrytp-test";
-$blowfish = new Blowfish($key, 'bf-cbc', '', $iv, OPENSSL_RAW_DATA | OPENSSL_NO_PADDING);
+$src = "CBC-encrypt-test";
+$blowfish = new Blowfish($key, 'bf-cbc', Blowfish::OUTPUT_BASE64, $iv, OPENSSL_RAW_DATA | OPENSSL_NO_PADDING);
 $start = microtime(true);
 for($i=0; $i<10000; $i++){
     $res = $blowfish->encrypt($src);
 }
 $end = microtime(true);
 echo $algorithm." cbc encrypt cost:".($end-$start)."\n";
+echo $res."\n";
 
 $ddata = $res;
 $start = microtime(true);
@@ -59,14 +61,15 @@ $end = microtime(true);
 echo $algorithm." cbc decrypt cost:".($end-$start)."\n\n\n";
 
 
-$src = "cfb-encrytp-test";
-$blowfish = new Blowfish($key, 'bf-cfb', '', $iv, OPENSSL_RAW_DATA | OPENSSL_NO_PADDING);
+$src = "CFB-encrypt-test";
+$blowfish = new Blowfish($key, 'bf-cfb', Blowfish::OUTPUT_BASE64, $iv, OPENSSL_RAW_DATA | OPENSSL_NO_PADDING);
 $start = microtime(true);
 for($i=0; $i<10000; $i++){
     $res = $blowfish->encrypt($src);
 }
 $end = microtime(true);
 echo $algorithm." cfb encrypt cost:".($end-$start)."\n";
+echo $res."\n";
 
 $ddata = $res;
 $start = microtime(true);

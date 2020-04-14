@@ -39,48 +39,49 @@ class AES
      * AES constructor.
      * @param string $key
      * @param string $method
-     *      aes-128-cbc 16
-     *      aes-128-cbc-hmac-sha1 16
-     *      aes-128-cbc-hmac-sha256 16
-     *      aes-128-ccm 12
-     *      aes-128-cfb 16
-     *      aes-128-cfb1 16
-     *      aes-128-cfb8 16
-     *      aes-128-ctr 16
-     *      aes-128-ecb 0
-     *      aes-128-gcm 12
-     *      aes-128-ofb 16
-     *      aes-128-xts 16
-     *      aes-192-cbc 16
-     *      aes-192-ccm 12
-     *      aes-192-cfb 16
-     *      aes-192-cfb1 16
-     *      aes-192-cfb8 16
-     *      aes-192-ctr 16
-     *      aes-192-ecb 0
-     *      aes-192-gcm 12
-     *      aes-192-ofb 16
-     *      aes-256-cbc 16
-     *      aes-256-cbc-hmac-sha1 16
-     *      aes-256-cbc-hmac-sha256 16
-     *      aes-256-ccm 12
-     *      aes-256-cfb 16
-     *      aes-256-cfb1 16
-     *      aes-256-cfb8 16
-     *      aes-256-ctr 16
-     *      aes-256-ecb 0
-     *      aes-256-gcm 12
-     *      aes-256-ofb 16
-     *      aes-256-xts 16
-     *      id-aes128-CCM 12
-     *      id-aes128-GCM 12
-     *      id-aes128-wrap 8
-     *      id-aes192-CCM 12
-     *      id-aes192-GCM 12
-     *      id-aes192-wrap 8
-     *      id-aes256-CCM 12
-     *      id-aes256-GCM 12
-     *      id-aes256-wrap 8
+     *      (mode key-len iv-len)
+     *      aes-128-cbc 16 16
+     *      aes-128-cbc-hmac-sha1 16 16
+     *      aes-128-cbc-hmac-sha256 16 16
+     *      aes-128-ccm 16 12
+     *      aes-128-cfb 16 16
+     *      aes-128-cfb1 16 16
+     *      aes-128-cfb8 16 16
+     *      aes-128-ctr 16 16
+     *      aes-128-ecb 16 0
+     *      aes-128-gcm 16 12
+     *      aes-128-ofb 16 16
+     *      aes-128-xts 16 16
+     *      aes-192-cbc 24 16
+     *      aes-192-ccm 24 12
+     *      aes-192-cfb 24 16
+     *      aes-192-cfb1 24 16
+     *      aes-192-cfb8 24 16
+     *      aes-192-ctr 24 16
+     *      aes-192-ecb 24 0
+     *      aes-192-gcm 24 12
+     *      aes-192-ofb 24 16
+     *      aes-256-cbc 32 16
+     *      aes-256-cbc-hmac-sha1 32 16
+     *      aes-256-cbc-hmac-sha256 32 16
+     *      aes-256-ccm 32 12
+     *      aes-256-cfb 32 16
+     *      aes-256-cfb1 32 16
+     *      aes-256-cfb8 32 16
+     *      aes-256-ctr 32 16
+     *      aes-256-ecb 32 0
+     *      aes-256-gcm 32 12
+     *      aes-256-ofb 32 16
+     *      aes-256-xts 32 16
+     *      id-aes128-CCM 32 12
+     *      id-aes128-GCM 32 12
+     *      id-aes128-wrap 32 8
+     *      id-aes192-CCM 32 12
+     *      id-aes192-GCM 32 12
+     *      id-aes192-wrap 32 8
+     *      id-aes256-CCM 32 12
+     *      id-aes256-GCM 32 12
+     *      id-aes256-wrap 32 8
      *
      * @param string $output
      *      base64、hex
