@@ -151,8 +151,8 @@ class JpegImageSizeData extends ImageSizeData {
       if (data.getUint8(index + 1) == 0xC0) {
         // Start of frame 0
         return JpegImageSizeData._(
-          height: data.getUint16(index + 5, Endian.big),
-          width: data.getUint16(index + 7, Endian.big),
+          height: data.getUint16(index + 7, Endian.big),
+          width: data.getUint16(index + 5, Endian.big),
         );
       }
       index += 2;
