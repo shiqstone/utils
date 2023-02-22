@@ -18,7 +18,7 @@ show_help() {
 
 check_port() {
     echo "nc -zv $host $nport"
-    `nc -zv $host $nport`
+    `nc -zv $host $nport -G 5`
 }
 
 comfirm_to_change() {
@@ -70,14 +70,26 @@ while [ -n "$1" ]
 do
     case "$1" in
       -h|--host)
+        if [[ -z "$2" ]]; then
+            echo "no input argument" 
+            exit 
+        fi
         host=$2
         shift
         ;;
       -p|--port)
+        if [[ -z "$2" ]]; then
+            echo "no input argument" 
+            exit 
+        fi
         nport=$2
         shift
         ;;
       -u|--user)
+        if [[ -z "$2" ]]; then
+            echo "no input argument" 
+            exit 
+        fi
         user=$2
         shift
         ;;
