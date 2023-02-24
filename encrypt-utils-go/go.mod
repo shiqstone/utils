@@ -2,7 +2,4 @@ module encrypt-test
 
 go 1.14
 
-require (
-	github.com/smartystreets/goconvey v1.6.4
-	golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2
-)
+require golang.org/x/crypto v0.1.0
